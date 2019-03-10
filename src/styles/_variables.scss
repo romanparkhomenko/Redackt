@@ -1,0 +1,92 @@
+/////////////////// DEFAULT PALLET
+$l-primary: #4D394B;
+$l-accent: #3E313C;
+$l-hover: #4C9689;
+$l-border: #949494;
+$l-gray: rgba(255, 255, 255, 0.5);
+$l-light-gray: #cccccc;
+$l-dark-gray: #717274;
+$l-header-color: white;
+$l-header-text: #2c2e2f;
+$l-thread: #f0f0f0;
+
+/////////////////// DARK PALLET
+$d-primary: #23272a;
+$d-accent: #2c2f33;
+$d-hover: #7289da;
+$d-border: #949494;
+$d-gray: rgba(255, 255, 255, 0.5);
+$d-light-gray: #cccccc;
+$d-dark-gray: #99aab5;
+$d-header-color: #23272a;
+$d-header-text: white;
+$d-thread: #2c2f33;
+$white: #FFFFFF;
+
+$themes: (
+        light: (
+                primary: $l-primary,
+                accent: $l-accent,
+                hoverAccent: $l-hover,
+                border: $l-border,
+                lightWhite: $l-gray,
+                lighterGray: $l-light-gray,
+                darkerGray: $l-dark-gray,
+                headerColor: $l-header-color,
+                headerText: $l-header-text,
+                mainBodyColor: $l-header-color,
+                mainBodyHover: #f8f8f8,
+                threadHeader: $l-thread,
+                threadText: $l-dark-gray,
+                messageText: #2c2e2f,
+                searchBar: $white,
+                dropdown: $white,
+                dropdownText: $l-dark-gray
+        ),
+        dark: (
+                primary: $d-accent,
+                accent: $d-primary,
+                hoverAccent: $d-hover,
+                border: $d-border,
+                lightWhite: $d-gray,
+                lighterGray: $d-light-gray,
+                darkerGray: $d-dark-gray,
+                headerColor: $d-header-color,
+                headerText: $d-header-text,
+                mainBodyColor: $d-primary,
+                mainBodyHover: $d-accent,
+                threadHeader: $d-thread,
+                threadText: $d-light-gray,
+                messageText: $d-light-gray,
+                searchBar: $d-primary,
+                dropdown: $d-accent,
+                dropdownText: $d-gray
+        ),
+);
+
+@mixin customize($arg: theme) {
+  $array: $themes;
+  $prefix: theme;
+
+  @if ($arg == theme) {
+    $array: $themes;
+    $prefix: theme;
+  }
+
+  @each $theme, $map in $array {
+    .#{$prefix}-#{$theme} & {
+      $array-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($array, $theme), '#{$key}');
+        $array-map: map-merge($array-map, ($key: $value)) !global;
+      }
+
+      @content;
+      $array-map: null !global;
+    }
+  }
+}
+
+@function getValue($key) {
+  @return map-get($array-map, $key);
+}

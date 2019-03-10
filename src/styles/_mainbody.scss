@@ -1,0 +1,119 @@
+
+// MAIN SECTION WITH AND WITHOUT OPEN THREAD
+.main {
+  display: grid;
+  height: 100vh;
+  overflow: auto;
+  grid-template-rows: [header-row] auto [main] 1fr [message-bar] auto;
+  grid-template-columns: [main-col] minmax(min-content, 60%) [thread] minmax(min-content, 1fr);
+  @-webkit-keyframes slide {
+    100% { left: 0; }
+  }
+  @keyframes slide {
+    100% { left: 0; }
+  }
+  header {
+    grid-row: header-row;
+    grid-column: span 2;
+  }
+
+  @include customize(theme) {
+    background: getValue(mainBodyColor);
+  }
+
+  p.loading {padding: 1rem;}
+
+  .main-content.threads-close {
+    grid-row: main;
+    grid-column: span 2;
+    margin-top: 2rem;
+    position: relative;
+    left: 0;
+    width: 100%;
+    transition: all 1s;
+  }
+  .main-content.threads-open {
+    grid-row: main;
+    grid-column: 1;
+    margin-top: 2rem;
+    position: relative;
+    left: 0;
+    width: 100%;
+    transition: all 1s;
+  }
+  .threads-closed {
+    display: none;
+  }
+  .threads-open {
+    display: block;
+    position: relative;
+    grid-row: span 3;
+    grid-column: main;
+    left: 250px;
+    animation: 0.5s slide forwards;
+    border-left: 1px solid #cccccc;
+  }
+
+  .message-bar {
+    grid-row: message-bar;
+    grid-column: span 2;
+    position: sticky;
+    @include customize(theme) {
+      background: getValue(headerColor);
+    }
+    z-index: 2;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 1px 1rem 1rem;
+    border-radius: 5px;
+    div.message-footer {
+      flex: 1 0 auto;
+      display: flex; align-items: center;
+      padding: 0;
+      border: 1.5px solid #cccccc;
+      border-radius: 7px;
+      span.add-file {
+        @include customize(theme) {
+          background: getValue(hoverAccent);
+        }
+        cursor: pointer;
+        padding: 0.75rem 0.5rem;
+        flex: 1 0 auto;
+        max-width: 30px;
+        border-right: 1px solid #cccccc;
+        img {display: block; max-width: 20px; margin: 0 auto; position: relative; z-index: 2;}
+        .tooltip {
+          display: block;
+          .tooltip-top {left: -50px;}
+        }
+      }
+      .messageBar {
+        flex: 1 0 auto;
+        padding: 0 0.75rem;
+        margin: 0;
+        @include customize(theme) {
+          background: getValue(headerColor);
+        }
+        label {
+          display: flex;
+          align-items: center;
+          img {display: block; max-width: 16px; margin: 0 auto; flex: 1 0 auto;}
+        }
+        input {
+          flex: 1 0 auto;
+          background: transparent;
+          font-family: inherit;
+          border: none;
+          font-size: 0.9rem;
+          color: #717274;
+          outline: none;
+          max-width: 100%;
+          padding: 0;
+          &::placeholder {color: #cccccc;}
+        }
+      }
+    }
+  }
+
+}

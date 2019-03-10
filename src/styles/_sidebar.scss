@@ -1,0 +1,211 @@
+
+// Sidebar menu to select + add subs.
+.sidebar {
+  @include customize(theme) {
+    background: getValue(primary);
+  }
+  color: white;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  display: flex;
+  flex-flow: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+      display: flex;
+      align-items: center;
+      @include customize(theme) {
+        color: getValue(lightWhite);
+      }
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.35rem 0 0.35rem 1rem;
+      line-height: 1.3;
+      margin: 0;
+      &:hover {
+        .remove-button img {display: block;}
+        color: white;
+        @include customize(theme) {
+          background: getValue(accent);
+        }
+      }
+      .remove-button {
+        position: absolute;
+        right: 9%;
+        button {
+          display: block;
+          width: 100%;
+          max-width: 30px;
+          margin-left: 1rem;
+          position: relative;
+          background: transparent;
+          color: #2c2e2f;
+          border: none;
+          border-radius: 7px;
+          font-size: 0.75rem;
+          padding: 0.3rem;
+          cursor: pointer;
+          img {max-width: 15px; display: none; margin: 0 auto; transform: rotate(45deg);}
+        }
+      }
+    }
+    li.active {
+      @include customize(theme) {
+        background: getValue(hoverAccent);
+      }
+      color: white;
+    }
+  }
+  div.sidebar-header {
+    padding: 1rem;
+    font-weight: 900;
+    font-size: 1.25rem;
+    .header-bell, .header-close {
+      display: flex; align-items: center;
+      h3 {margin: 0; font-size: 1.1rem; font-weight: 900; flex: 1 0 auto;}
+      img {max-width: 20px; flex:1 0 auto;}
+    }
+    .header-close {display: none;}
+    p {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      font-size: 0.8rem;
+      @include customize(theme) {
+        color: getValue(lightWhite);
+      }
+      margin: 3px 0;
+      &:before {
+        content: "";
+        display: block;
+        width: 9px;
+        height: 9px;
+        @include customize(theme) {
+          background: getValue(hoverAccent);
+        }
+        border-radius: 50%;
+        margin: 1px 6px 0 0;
+      }
+    }
+    &:hover {
+      @include customize(theme) {
+        background: getValue(accent);
+      }
+      p {color: white;}
+    }
+  }
+  .sidebar-threads {
+    margin-bottom: 1rem;
+    div.tooltip {padding: 0;}
+    .tooltip .tooltiptext {width: 150px;}
+    .tooltip-top {left: 0%; bottom: 110%;}
+    div {
+      flex: 1 0 auto;
+      display: flex; align-items: center;
+      padding: 0.3rem 1rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      @include customize(theme) {
+        color: getValue(lightWhite);
+      }
+      cursor: pointer;
+      img {max-width: 18px; margin-right: 7px;}
+      &:hover {
+        @include customize(theme) {
+          background: getValue(accent);
+        }
+        color: white;
+      }
+    }
+  }
+  div.sidebar-add-channel {
+    margin: 6px 14px 14px;
+    padding: 7px;
+    @include customize(theme) {
+      background: getValue(accent);
+    }
+    border-radius: 4px;
+    label {
+      display: flex;
+      align-items: center;
+      img {max-width: 16px; margin-right: 3px;}
+    }
+    input {
+      background: transparent;
+      font-family: inherit;
+      border: none;
+      font-size: 1rem;
+      color: #cccccc;
+      outline: none;
+      max-width: 200px;
+      padding: 0;
+      &::placeholder {
+        @include customize(theme) {
+          color: getValue(lightWhite);
+        }
+      }
+    }
+  }
+  div.sidebar-channels {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    @include customize(theme) {
+      color: getValue(lightWhite);
+    }
+    span {flex: 1 0 auto;}
+    img {max-width: 20px;}
+    &:hover {
+      @include customize(theme) {
+        background: getValue(accent);
+      }
+      cursor: pointer;
+    }
+  }
+
+  div.sidebar-channels.direct-messages {margin-top: 1rem;}
+
+  div.direct-messages {
+    li {&:hover {
+      @include customize(theme) {
+        background: getValue(accent);
+      }
+      p {color: white;}}
+    }
+    p {
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+      font-size: 1rem;
+      @include customize(theme) {
+        color: getValue(lightWhite);
+      }
+      margin: 0;
+      &:hover {
+        @include customize(theme) {
+          background: getValue(accent);
+        }
+        p {color: white;}
+      }
+      &:before {
+        content: "";
+        display: block;
+        width: 9px;
+        height: 9px;
+        @include customize(theme) {
+          background: getValue(hoverAccent);
+        }
+        border-radius: 50%;
+        margin: 1px 6px 0 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+
+
+/////////////////////////////////////////// THREAD BAR
+.thread-content {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: scroll;
+  p.title {max-width: 400px;}
+  .thread-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    @include customize(theme) {
+      color: getValue(headerText);
+    }
+    @include customize(theme) {
+      background: getValue(threadHeader);
+    }
+    padding: 1rem;
+    border-bottom: 1px solid #cccccc;
+    .thread-title {
+      h3 {font-size: 1.1rem; margin: 0; font-weight: 900;}
+      p {
+        font-size: 0.9rem;
+        margin: 0;
+        @include customize(theme) {
+          color: getValue(headerText);
+        }
+      }
+    }
+    .thread-button-close {
+      flex: 1 0 auto; display: flex; justify-content: flex-end; align-items: center;
+      button {
+        background: transparent;
+        color: #cccccc;
+        font-size: 1.5rem;
+        border: none;
+        padding: 0 1rem;
+        cursor: pointer;
+        transform: scaleY(0.75);
+        &:hover {color: #f0f0f0;}
+      }
+    }
+  }
+  .threadTopic {
+    .message-block div.media {
+      cursor: auto;
+      p {display: none;}
+      div.mediaDiv {
+        video {max-width: 300px; max-height: 300px; margin-top: 1rem;}
+        img {max-width: 300px; max-height: 300px; margin-top: 1rem;}
+      }
+    }
+  }
+  .message-block {
+    cursor: auto;
+    .thread-button button {display: none;}
+  }
+  .message-block.active {background: white;}
+  .replies {
+    display: flex; align-items: center;
+    @include customize(theme) {
+      color: getValue(threadText);
+    }
+    font-size: 0.5rem;
+    padding: 0 1rem;
+    &:after {
+      content: "";
+      width: 100%;
+      height: 1px;
+      flex: 1 1 0%;
+      @include customize(theme) {
+        background: getValue(lighterGray);
+      }
+      margin: 2px 0px 0px 10px;
+    }
+  }
+}

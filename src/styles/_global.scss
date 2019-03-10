@@ -1,0 +1,149 @@
+
+/////////////////////////////////////////// GLOBALS
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// .App is the main container in which we're setting up the grid.
+.App {
+  display: grid;
+  grid-template-columns: minmax(min-content, 18%) minmax(min-content, 82%);
+  font-family: 'Lato', sans-serif;
+  font-variant-ligatures: common-ligatures;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+//////////////////////////////////// TOOLTIPS
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  font-size: 0.75rem;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip-top {
+  bottom: 195%;
+  left: 7%;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+  }
+}
+
+.tooltip-bottom {
+  top: 150%;
+  left: 25%;
+  margin-left: -70px;
+  &:after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    display: block;
+
+    .sidebar {
+      display: none;
+    }
+
+    .sidebar.mobile {
+      display: block;
+      position: relative;
+      .header-bell {display: none;}
+      .header-close {
+        display: flex;
+        img { transform: rotate(45deg);}
+      }
+    }
+
+    .main {
+      display: block;
+      .message-bar {
+        display: none;
+      }
+    }
+
+    .main.thread-is-open {
+      header {display: none;}
+    }
+
+    .main.thread-is-closed {
+      header {
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+
+        .open-sidebar {
+          width: 10%;
+          display: block;
+          img {max-width: 25px; margin-right: 5px; border-radius: 4px;}
+        }
+        .header-info {
+          width: 80%;
+          display: flex;
+          flex-flow: column;
+          align-items: center;
+          div.title {flex: 1 0 auto;}
+          div.subhead {flex: 1 0 auto; justify-content: center; width: 100%;}
+        }
+        .header-search {
+          width: 10%;
+          justify-content: center;
+          div.tooltip:nth-of-type(1), div.tooltip:nth-of-type(2) {display: none;}
+          div.tooltip:nth-of-type(3) {
+            order: 1;
+            span.tooltiptext {display: none;}
+            img {max-width: 25px;}
+          }
+          div.tooltip:nth-of-type(n+4) {display: none;}
+        }
+      }
+    }
+
+    .main-content.threads-close {
+      display: block;
+    }
+
+    .main-content.threads-open {
+      display: none;
+    }
+
+  }
+}

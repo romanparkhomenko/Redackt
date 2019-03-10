@@ -1,0 +1,66 @@
+
+
+/////////////////////////////////////////////// MODAL STYLING
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width:100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-main {
+  position:fixed;
+  background: white;
+  width: 80%;
+  height: 70%;
+  overflow: auto;
+  top:15%;
+  left:50%;
+  transform: translate(-50%,0%);
+  border: 1px solid #717274;
+  border-radius: 4px;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+// MODAL CONTENT STYLES
+.modal-main .searchBar {
+  margin: 0;
+  padding: 12px 7px;
+  background: white;
+  border-bottom: 1px solid #717274;
+  cursor: pointer;
+  label {
+    display: flex;
+    align-items: center;
+    img {max-width: 16px; margin: 0 3px 0 0;}
+  }
+  input {
+    background: transparent;
+    font-family: inherit;
+    border: none;
+    font-size: 1rem;
+    color: #717274;
+    outline: none;
+    max-width: 175px;
+    padding: 0;
+    &::placeholder {color: #cccccc;}
+  }
+}
+
+.modal-main {
+  .search-results {
+    h3.search-header {padding: 0 1rem;}
+    p.load-message {padding: 0 1rem; margin: 0;}
+    .thread-button {display: none;}
+  }
+}

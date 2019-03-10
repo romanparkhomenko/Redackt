@@ -1,0 +1,131 @@
+
+
+//////////////////////////////// MAIN SECTION HEADER
+header {
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  @include customize(theme) {
+    background: getValue(headerColor);
+  }
+  padding: 1rem 1.5rem 0.5rem;
+  text-align: left;
+  @include customize(theme) {
+    color: getValue(headerText);
+  }
+  border-bottom: 1px solid #cccccc;
+  .open-sidebar {display: none;}
+
+  .header-info {
+    flex: 1 0 auto;
+    h1#main-title {margin: 0; font-size: 1.1rem; font-weight: 900;}
+    div.subhead {
+      display: flex; align-items: center;
+      margin-top: 5px;
+      img {max-width: 15px; margin-right: 5px;}
+      span.numberOfSubs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        margin-right: 5px;
+        padding: 1px;
+        max-width: 75px;
+        width: 100%;
+        p.subtitle {font-size: 0.8rem;}
+      }
+      p.subtitle {
+        @include customize(theme) {
+          color: getValue(dropdownText);
+        }
+        margin: 0;
+        font-size: 0.9rem;
+      }
+      div.dropdown {
+        @include customize(theme) {
+          color: getValue(dropdownText);
+        }
+        cursor: pointer;
+        margin: 0 0 0 5px;
+        font-size: 0.9rem;
+        position: relative;
+        .dd-header {
+          display: flex; align-items: center;
+          svg {margin-left: 8px;}
+        }
+        .dd-list {
+          position: absolute;
+          @include customize(theme) {
+            background: getValue(dropdown);
+          }
+          z-index: 2;
+          padding: 0;
+          margin: 0;
+          list-style-type: none;
+          border: 1px solid #cccccc;
+          li {
+            border-bottom: 0.5px solid #cccccc;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            &:hover {
+              @include customize(theme) {
+                background: getValue(lighterGray);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .header-search {
+    flex: 1 0 auto;
+    display: flex; align-items: center; justify-content: flex-end;
+    div.tooltip {
+      flex: 1 0 auto;
+      max-width: 25px;
+      img {max-width: 18px; display: block; margin: 0 auto;}
+      margin: 0 5px;
+    }
+    div.tooltip:nth-last-of-type(1) .tooltiptext.tooltip-bottom {display: none!important;}
+    div.tooltip:nth-last-of-type(2) .tooltiptext.tooltip-bottom {display: none!important;}
+    div.tooltip.search {
+      max-width: 175px;
+      flex: 1 0 auto;
+    }
+    .searchBar {
+      cursor: pointer;
+      margin: 0;
+      padding: 7px;
+      @include customize(theme) {
+        background: getValue(searchBar);
+      }
+      border: 1px solid #717274;
+      border-radius: 4px;
+      label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        img {max-width: 16px; margin: 0 3px 0 0;}
+      }
+      input {
+        cursor: pointer;
+        background: transparent;
+        font-family: inherit;
+        border: none;
+        font-size: 1rem;
+        color: #717274;
+        outline: none;
+        max-width: 175px;
+        padding: 0;
+        &::placeholder {color: #cccccc;}
+      }
+    }
+  }
+}
+
+.main.thread-is-open {.header-search {display: none;}}
