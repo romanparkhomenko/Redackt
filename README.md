@@ -36,8 +36,8 @@ I'd like to add:
 - **More media formas** - Right now, an image will only generate if the response contains .PNG or .JPG. GIFS are loaded via a video tag. I'm certain there's better ways to get more media types in.
 ---
 ### Collaboration
-I've never done this before, so I'm not entirely sure what collaboration looks like or is supposed to look like. You can fork the project or I guess hit me up if you want to join the slacker cause!
-Contact me at rsparkhomenko@gmail.com or message u/RusskiRoman on reddit with any questions!
+I've never done this before, so I'm not entirely sure what collaboration looks like or is supposed to look like. You can fork the project or I guess hit me up if you want to join the slacker cause! Contact me at rsparkhomenko@gmail.com or message u/RusskiRoman on reddit with any questions!
+
 ---
 Shameful Plug: 
 If this project helps you "slack" off at work, teaches you something, or you appreciate crappy code and want to support this project: You can buy me a cup of coffee or help get me out of soul-crushing student debt here: 
