@@ -13,7 +13,9 @@
 
 .modal-main {
   position:fixed;
-  background: white;
+  @include customize(theme) {
+    background: getValue(modalBody);
+  }
   width: 80%;
   height: 70%;
   overflow: auto;
@@ -36,7 +38,9 @@
 .modal-main .searchBar {
   margin: 0;
   padding: 12px 7px;
-  background: white;
+  @include customize(theme) {
+    background: getValue(modalBody);
+  }
   border-bottom: 1px solid #717274;
   cursor: pointer;
   label {
@@ -59,7 +63,12 @@
 
 .modal-main {
   .search-results {
-    h3.search-header {padding: 0 1rem;}
+    h3.search-header {
+      @include customize(theme) {
+        color: getValue(headerText);
+      }
+      padding: 1rem;
+    }
     p.load-message {padding: 0 1rem; margin: 0;}
     .thread-button {display: none;}
   }

@@ -27,6 +27,7 @@
       }
     }
     p.title {
+      cursor: pointer;
       margin: 0;
       font-size: 0.9rem;
       @include customize(theme) {
@@ -37,8 +38,24 @@
       cursor: pointer;
       p {display: none;}
       div.mediaDiv {
+        min-width: 350px;
+        max-width: 350px;
         video {max-width: 300px; max-height: 300px; margin-top: 1rem;}
         img {max-width: 300px; max-height: 300px; margin-top: 1rem;}
+        .responsiveIframe {
+          margin-top: 1rem;
+          position: relative;
+          overflow: hidden;
+          padding-top: 56.25%;
+          .iframe-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+          }
+        }
       }
     }
     div.media.expanded {
@@ -53,6 +70,7 @@
         cursor: auto;
         position:fixed;
         background: transparent;
+        max-width: 100%;
         width: 80%;
         height: 80%;
         overflow: auto;
@@ -86,7 +104,7 @@
   }
   .thread-button {
     position: absolute;
-    right: 20%;
+    left: 60%;
     button {
       display: none;
       width: 100%;

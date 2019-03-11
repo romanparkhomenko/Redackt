@@ -12,6 +12,7 @@ export default class MainBody extends Component {
       getMorePosts: false
     };
 
+    //Function to get the subscriber count of the subreddit.
     getSubCount = (subCount) => {
       if (subCount > 999999) {
           subCount = (subCount/1000000).toFixed(1) + 'M';
@@ -27,12 +28,14 @@ export default class MainBody extends Component {
       })
     };
 
+    // Function to open thread
     isThreadOpen = () => {
         this.setState(prevState => ({
             isToggleOn: !prevState.isToggleOn
         }));
     };
 
+    //Get more posts in main body.
     getMorePosts = () => {
         this.setState(prevState => ({
             getMorePosts: !prevState.getMorePosts

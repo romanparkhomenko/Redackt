@@ -40,17 +40,18 @@ export default class RedditPost extends Component {
         this.props.isThreadOpen();
     };
 
+    // Go through response to see if a GIF URL, YouTube Video URL, or image URL need to be sent to the Message component.
     getMedia = (data, index) => {
         let media = this.state.media;
         if (data.preview) {
-            if (data.preview.reddit_video_preview) {
+             if (data.url.includes("png") || data.url.includes("jpg")  || data.url.includes("youtube") || data.url.includes("youtu.be")) {
+                media = data.url;
+            } else if (data.preview.reddit_video_preview) {
                 media = data.preview;
             } else if (data.media) {
                 if (data.media.reddit_video) {
                     media = data.media.reddit_video.fallback_url;
                 }
-            } else if (data.url.includes("png") || data.url.includes("jpg")) {
-                media = data.url;
             }
         } else {
             media = null;

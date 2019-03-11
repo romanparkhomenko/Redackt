@@ -41,7 +41,8 @@ $themes: (
                 messageText: #2c2e2f,
                 searchBar: $white,
                 dropdown: $white,
-                dropdownText: $l-dark-gray
+                dropdownText: $l-dark-gray,
+                modalBody: white
         ),
         dark: (
                 primary: $d-accent,
@@ -60,7 +61,8 @@ $themes: (
                 messageText: $d-light-gray,
                 searchBar: $d-primary,
                 dropdown: $d-accent,
-                dropdownText: $d-gray
+                dropdownText: $d-gray,
+                modalBody: $d-primary
         ),
 );
 

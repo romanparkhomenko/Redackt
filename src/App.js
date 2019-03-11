@@ -22,12 +22,16 @@ class App extends Component {
         id: 2
       },
       {
-        name: "apexlegends",
+        name: "pics",
         id: 3
       },
       {
         name: "reactjs",
         id: 4
+      },
+      {
+        name: "videos",
+        id: 5
       }
     ],
     sortType: "top",
@@ -37,7 +41,7 @@ class App extends Component {
     openSidebar: true
   };
 
-
+  //Function to handle sub change from Sidebar.
   changeActiveSub = (name) => {
     this.setState(prevState => {
       return {
@@ -125,7 +129,6 @@ class App extends Component {
   componentWillMount() {
     let subs = this.readCookie('subs');
     let darkMode = this.readCookie('darkMode');
-    console.log(subs);
     if (!subs) {
       this.setCookie('subs', this.state.subReddits);
     }
@@ -133,19 +136,6 @@ class App extends Component {
       this.setCookie('darkMode', false);
     }
   }
-
-  // componentDidUpdate() {
-  //   let subs = this.readCookie('subs');
-  //   console.log(subs);
-  //   let newSubs = this.readCookie('subs');
-  //   if (newSubs !== prevState.subReddits) {
-  //     this.setState(prevState => {
-  //       return {
-  //         subReddits: newSubs
-  //       }
-  //     });
-  //   }
-  // }
 
   render() {
     return (

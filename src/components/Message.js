@@ -24,6 +24,7 @@ export default class Message extends Component {
         }
     };
 
+    //Get upvote number on post
     getScore = () => {
         return this.props.upvotes > 999 ? (this.props.upvotes/1000).toFixed(1) + 'k' : this.props.upvotes;
     };
@@ -96,11 +97,11 @@ export default class Message extends Component {
     };
 
     // Open thread if clicked inside message box.
-    // handleClick = (e) => {
-    //     if (this.node.contains(e.target) && !this.props.noClick) {
-    //         this.props.handleThreadOpen(this.props.index, this.props.media)
-    //     }
-    // };
+    handleClick = (e) => {
+        if (this.node.contains(e.target) && !this.props.noClick) {
+            this.props.handleThreadOpen(this.props.index, this.props.media)
+        }
+    };
 
     componentWillMount() {
         document.addEventListener('mousedown', this.handleClick, false);
@@ -136,13 +137,13 @@ export default class Message extends Component {
       const score = this.getScore();
     return (
         <React.Fragment>
-          <div className={this.props.activeMessage === this.props.index && this.props.isToggleOn ? 'message-block active' : 'message-block'} ref={node => this.node = node}>
+          <div className={this.props.activeMessage === this.props.index && this.props.isToggleOn ? 'message-block active' : 'message-block'}>
             <div className="headshot">
                 <img src={this.state.avatar} alt="headshot placeholder" />
             </div>
             <div className="message">
                 <p className="author">{this.props.author} <span className="date">{this.getPostDate(this.props.created)}</span></p>
-                <p className="title">{this.props.title}</p>
+                <p className="title" ref={node => this.node = node}>{this.props.title}</p>
                 <div className={this.state.mediaExpanded ? 'media expanded' : 'media'} onClick={!this.props.noClick ? () => this.expandMedia(this.state.mediaExpanded) : null}>
                     {hasMedia ? (
                         <Media
