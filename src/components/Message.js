@@ -114,10 +114,8 @@ export default class Message extends Component {
 
     // Generate random "profile pic" for messages.
     getRandomThumbnail = () => {
-        let photos = ["abstract", "animals", "business", "cats", "city", "food", "nightlife", "fashion", "people", "nature", "sports", "technics", "transport"];
-        let photo = photos[Math.floor(Math.random()*photos.length)];
         this.setState({
-            avatar: "https://lorempixel.com/100/100/" + photo
+            avatar: "https://picsum.photos/100/100/?image=" + (Math.floor(Math.random() * 200))
         });
     };
 
