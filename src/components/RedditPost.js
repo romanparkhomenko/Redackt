@@ -26,7 +26,7 @@ export default class RedditPost extends Component {
     handleThreadOpen = (index, media) => {
         this.setState(prevState => ({
             isToggleOn: true,
-            url: "https://www.reddit.com" + this.state.posts[index].data.permalink + ".json?limit=12&raw_json=1&sort=" + this.props.sortType,
+            url: "https://www.reddit.com" + this.state.posts[index].data.permalink + ".json?&raw_json=1&sort=" + this.props.sortType,
             activeMessage: index,
             media: media
         }));

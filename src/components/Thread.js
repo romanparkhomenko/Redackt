@@ -68,7 +68,7 @@ export default class Thread extends Component {
 
                             })
                         } else {
-                            return post.data.children.slice(0, 11).map((post, index) => {
+                            return post.data.children.map((post, index) => {
                                 return <React.Fragment key={index}>
                                     <Message
                                     key={index.toString()}

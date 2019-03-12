@@ -117,7 +117,7 @@ export default class Message extends Component {
         let photos = ["abstract", "animals", "business", "cats", "city", "food", "nightlife", "fashion", "people", "nature", "sports", "technics", "transport"];
         let photo = photos[Math.floor(Math.random()*photos.length)];
         this.setState({
-            avatar: "http://lorempixel.com/100/100/" + photo
+            avatar: "https://lorempixel.com/100/100/" + photo
         });
     };
 
