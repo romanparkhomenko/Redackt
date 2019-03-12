@@ -37,7 +37,7 @@ export default class RedditPost extends Component {
         this.setState(prevState => ({
             isToggleOn: !prevState.isToggleOn
         }));
-        this.props.isThreadOpen();
+        this.props.isThreadClose();
     };
 
     // Go through response to see if a GIF URL, YouTube Video URL, or image URL need to be sent to the Message component.

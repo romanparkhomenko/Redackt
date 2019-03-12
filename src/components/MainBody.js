@@ -31,7 +31,14 @@ export default class MainBody extends Component {
     // Function to open thread
     isThreadOpen = () => {
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
+            isToggleOn: true
+        }));
+    };
+
+    // Function to open thread
+    isThreadClose = () => {
+        this.setState(prevState => ({
+            isToggleOn: false
         }));
     };
 
@@ -59,6 +66,7 @@ export default class MainBody extends Component {
             activeSubURL={this.props.activeSubURL}
             getSubCount={this.getSubCount}
             isThreadOpen={this.isThreadOpen}
+            isThreadClose={this.isThreadClose}
             morePosts={this.state.getMorePosts}
             sortType={this.props.sortType}
         />

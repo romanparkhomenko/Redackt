@@ -98,19 +98,12 @@ export default class Message extends Component {
 
     // Open thread if clicked inside message box.
     handleClick = (e) => {
-        if (this.node.contains(e.target) && !this.props.noClick) {
+        if (!this.node.contains(e.target) && !this.props.noClick) {
             this.props.handleThreadOpen(this.props.index, this.props.media)
         }
     };
 
-    componentWillMount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
-
-    componentWillUnmount() {
-        document.addEventListener('mousedown', this.handleClick, false);
-    }
-
+    // Make media element pop up in modal
     expandMedia = (prevState) => {
         if (this.state.mediaExpanded !== prevState.mediaExpanded) {
             this.setState(prevState => ({
@@ -135,16 +128,18 @@ export default class Message extends Component {
     render() {
       const hasMedia = this.getMedia();
       const score = this.getScore();
+      const messageBlockClassname = this.props.activeMessage === this.props.index && this.props.isToggleOn ? 'message-block active' : 'message-block';
+
     return (
         <React.Fragment>
-          <div className={this.props.activeMessage === this.props.index && this.props.isToggleOn ? 'message-block active' : 'message-block'}>
+          <div className={messageBlockClassname} onClick={(e) => this.handleClick(e)}>
             <div className="headshot">
                 <img src={this.state.avatar} alt="headshot placeholder" />
             </div>
             <div className="message">
                 <p className="author">{this.props.author} <span className="date">{this.getPostDate(this.props.created)}</span></p>
-                <p className="title" ref={node => this.node = node}>{this.props.title}</p>
-                <div className={this.state.mediaExpanded ? 'media expanded' : 'media'} onClick={!this.props.noClick ? () => this.expandMedia(this.state.mediaExpanded) : null}>
+                <p className="title">{this.props.title}</p>
+                <div className={this.state.mediaExpanded ? 'media expanded' : 'media'} onClick={!this.props.noClick ? () => this.expandMedia(this.state.mediaExpanded) : null} ref={node => this.node = node}>
                     {hasMedia ? (
                         <Media
                             key={1}

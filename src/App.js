@@ -48,7 +48,8 @@ class App extends Component {
         activeSub: name,
         activeSubURL: "https://www.reddit.com/r/" + name + "/"+this.state.sortType+".json?limit=10&raw_json=1"
       }
-    })
+    });
+    this.openSideBar();
   };
 
   addSub = (name) => {
