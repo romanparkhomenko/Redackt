@@ -4,6 +4,8 @@
 Inspired by [pcottle's MSOutlookit](https://github.com/pcottle/MSOutlookit), I decided to build my own Slack-like skin for Reddit. Now you can pretend to be messaging your colleagues, while actually browsing your favorite subreddit. This was my first big project in React, but it was a lot of fun and taught me a lot. I'm also making it completely open source so you guys can help me make this a truly wonderful time-waster! I've listed a problem and TO-DO section below if there's anything in particular you want to tackle.
 Disclaimer: Obviously, I don't own Reddit or Slack, just wanted to make something cool combining the two!
 
+![Light Mode](https://imgur.com/jBaUbbt)
+![Dark Mode](https://imgur.com/Qxlc3eW)
 ---
 ### Features:
 I wanted to bring in as much functionality as possible, while staying true to the features that Slack and Reddit offer, such as:
