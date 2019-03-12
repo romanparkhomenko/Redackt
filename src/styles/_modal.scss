@@ -72,4 +72,8 @@
     p.load-message {padding: 0 1rem; margin: 0;}
     .thread-button {display: none;}
   }
+
+  .theme-dark & p.load-message {
+    color:#717274;
+  }
 }
