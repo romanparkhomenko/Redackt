@@ -102,7 +102,7 @@ time, mark, audio, video {
 @media screen and (max-width: 768px) {
   .App {
     display: block;
-    -webkit-overflow-scrolling: touch;
+    //-webkit-overflow-scrolling: touch;
 
     .sidebar {
       display: none;
