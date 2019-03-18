@@ -122,7 +122,7 @@ export default class RedditPost extends Component {
                 title={post.data.title}
                 author={post.data.author}
                 url={post.data.permalink + ".json?limit=12&sort=top&raw_json=1"}
-                permalink={"https://www.reddit.com/" + post.data.permalink}
+                permalink={"https://www.reddit.com" + post.data.permalink}
                 upvotes={post.data.score}
                 downvotes={post.data.downs}
                 gildings={post.data.gildings}
