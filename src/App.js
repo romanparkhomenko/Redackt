@@ -21,7 +21,7 @@ class App extends Component {
       },
       {
         name: "RocketLeague",
-        isStarred: false,
+        isStarred: true,
         id: 2
       },
       {
@@ -31,7 +31,7 @@ class App extends Component {
       },
       {
         name: "reactjs",
-        isStarred: false,
+        isStarred: true,
         id: 4
       },
       {
