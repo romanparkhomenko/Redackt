@@ -139,11 +139,12 @@ class App extends Component {
       return 
     } else {
       let newSubs = oldSubs.map(sub => {
-        if (sub.name === this.state.activeSub) {
-          return ({...sub, isStarred: !sub.isStarred});
-        } else {
-          return ({...sub})
-        }
+        return (sub.name === this.state.activeSub ? {...sub, isStarred: !sub.isStarred} : {...sub});
+        // if (sub.name === this.state.activeSub) {
+        //   return ({...sub, isStarred: !sub.isStarred});
+        // } else {
+        //   return ({...sub})
+        // }
       });
       console.log(newSubs);
       this.setState(prevState => {
