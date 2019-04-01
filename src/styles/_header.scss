@@ -25,7 +25,16 @@ header {
     div.subhead {
       display: flex; align-items: center;
       margin-top: 5px;
-      img {max-width: 15px; margin-right: 5px;}
+      img {
+        max-width: 15px; 
+        margin-right: 5px;
+        cursor: pointer;
+        &:hover {
+          @include customize(theme) {
+            background: getValue(lighterGray);
+          }
+        }
+      }
       span.numberOfSubs {
         display: flex;
         align-items: center;
