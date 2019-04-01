@@ -60,6 +60,7 @@ export default class MainBody extends Component {
             sortType={this.props.sortType}
             getDarkMode={this.props.getDarkMode}
             openSideBar={this.props.openSideBar}
+            toggleStar={this.props.toggleStar}
         />
         <RedditPost
             activeSub={this.props.activeSub}

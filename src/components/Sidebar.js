@@ -105,7 +105,7 @@ export default class Sidebar extends Component {
 				<ul>
 				    {this.props.subReddits.map((subReddit) =>
 					  this.displayStarredSubs(subReddit)
-					)} 
+					)}
 				</ul>
 				<div className="sidebar-channels" onClick={this.focusSubredditInput}>
 					<span>Channels</span>

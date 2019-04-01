@@ -133,6 +133,27 @@ class App extends Component {
     return null;
   };
 
+  // toggleStar = (activeSub) => {
+  //   let oldSubs = this.readCookie('subs');
+  //   if (!activeSub || !oldSubs[0]) {
+  //     return 
+  //   } else {
+  //     let newSubs = oldSubs.map(sub => {
+  //       if (sub.name === activeSub) {
+  //         sub.isStarred = !sub.isStarred;
+  //       }
+  //     });
+  //     this.setState(prevState => {
+  //       return {
+  //         subReddits: newSubs,
+  //         activeSub: 'RocketLeague',
+  //         activeSubURL: "https://www.reddit.com/r/" + 'RocketLeague' + "/"+this.state.sortType+".json?limit=10&raw_json=1"
+  //       }
+  //     });
+  //     this.setCookie('subs', newSubs);
+  //   }      
+  // }
+
   componentWillMount() {
     let subs = this.readCookie('subs');
     let darkMode = this.readCookie('darkMode');
@@ -165,6 +186,7 @@ class App extends Component {
             getSortType={this.getSortType}
             getDarkMode={this.getDarkMode}
             openSideBar={this.openSideBar}
+            toggleStar={this.toggleStar}
         />
       </div>
     );
