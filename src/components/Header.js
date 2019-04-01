@@ -99,7 +99,7 @@ export default class Header extends Component {
                         <h1 id={titleID}>{title}</h1>
                     </div>
                     <div className="subhead">
-                        <img src={star} alt="star-icon" onClick={() => this.props.getDarkMode()}/>
+                        <img src={star} alt="star-icon" onClick={() => this.props.toggleStar()}/>
                         <span className="numberOfSubs">
                             <img src={person} alt="person-icon"/>
                             <p className={"subtitle"}>{this.props.subCount}</p>

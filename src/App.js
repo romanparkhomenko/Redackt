@@ -133,26 +133,27 @@ class App extends Component {
     return null;
   };
 
-  // toggleStar = (activeSub) => {
-  //   let oldSubs = this.readCookie('subs');
-  //   if (!activeSub || !oldSubs[0]) {
-  //     return 
-  //   } else {
-  //     let newSubs = oldSubs.map(sub => {
-  //       if (sub.name === activeSub) {
-  //         sub.isStarred = !sub.isStarred;
-  //       }
-  //     });
-  //     this.setState(prevState => {
-  //       return {
-  //         subReddits: newSubs,
-  //         activeSub: 'RocketLeague',
-  //         activeSubURL: "https://www.reddit.com/r/" + 'RocketLeague' + "/"+this.state.sortType+".json?limit=10&raw_json=1"
-  //       }
-  //     });
-  //     this.setCookie('subs', newSubs);
-  //   }      
-  // }
+  toggleStar = () => {
+    let oldSubs = this.readCookie('subs');
+    if (oldSubs[0] === null) {
+      return 
+    } else {
+      let newSubs = oldSubs.map(sub => {
+        if (sub.name === this.state.activeSub) {
+          return ({...sub, isStarred: !sub.isStarred});
+        } else {
+          return ({...sub})
+        }
+      });
+      console.log(newSubs);
+      this.setState(prevState => {
+        return {
+          subReddits: newSubs,
+        }
+      });
+      this.setCookie('subs', newSubs);
+    }      
+  }
 
   componentWillMount() {
     let subs = this.readCookie('subs');
