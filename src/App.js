@@ -151,6 +151,10 @@ class App extends Component {
     }      
   }
 
+  activeSubStarredStatus = () => {
+    
+  }
+
   componentWillMount() {
     let subs = this.readCookie('subs');
     let darkMode = this.readCookie('darkMode');
@@ -178,6 +182,7 @@ class App extends Component {
         <MainBody
             activeSub={this.state.activeSub}
             activeSubURL={this.state.activeSubURL}
+            getIsActiveSubStarred={this.activeSubStarredStatus()}
             getSubCount={this.getSubCount}
             sortType={this.state.sortType}
             getSortType={this.getSortType}

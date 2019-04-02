@@ -55,6 +55,7 @@ export default class MainBody extends Component {
         <Header
             activeSub={this.props.activeSub}
             activeSubURL={this.props.activeSubURL}
+            isActiveSubStarred={this.props.getIsActiveSubStarred}
             subCount={this.state.subCount}
             getSortType={this.props.getSortType}
             sortType={this.props.sortType}
