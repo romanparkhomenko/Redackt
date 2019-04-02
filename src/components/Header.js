@@ -8,6 +8,7 @@ import atIcon from "../images/at-icon.svg";
 import settingsIcon from "../images/settings-icon.svg";
 import lookupIcon from "../images/lookup-icon.svg";
 import headshot from "../images/slack-logo-icon.png";
+import yellowStarIcon from "../images/star-filled-icon.png";
 import Modal from "./Modal.js";
 import Dropdown from "./Dropdown.js";
 
