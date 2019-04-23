@@ -141,7 +141,6 @@ class App extends Component {
       let newSubs = oldSubs.map(sub => {
         return (sub.name === this.state.activeSub ? {...sub, isStarred: !sub.isStarred} : {...sub});
       });
-      console.log(newSubs);
       this.setState(prevState => {
         return {
           subReddits: newSubs,
@@ -151,8 +150,10 @@ class App extends Component {
     }      
   }
 
-  activeSubStarredStatus = () => {
-    
+  activeSubStarredStatus = (activeSub) => {
+    const oldSubs = this.readCookie('subs');
+    const isActiveSubStarred =  oldSubs.find(sub =>  sub.name === activeSub ).isStarred;
+    return isActiveSubStarred;
   }
 
   componentWillMount() {
@@ -182,7 +183,7 @@ class App extends Component {
         <MainBody
             activeSub={this.state.activeSub}
             activeSubURL={this.state.activeSubURL}
-            getIsActiveSubStarred={this.activeSubStarredStatus()}
+            getIsActiveSubStarred={this.activeSubStarredStatus}
             getSubCount={this.getSubCount}
             sortType={this.state.sortType}
             getSortType={this.getSortType}
