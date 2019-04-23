@@ -11,26 +11,32 @@ class App extends Component {
     subReddits: [
       {
         name: "AskReddit",
+        isStarred: false,
         id: 0
       },
       {
         name: "all",
+        isStarred: false,
         id: 1
       },
       {
         name: "RocketLeague",
+        isStarred: false,
         id: 2
       },
       {
         name: "pics",
+        isStarred: false,
         id: 3
       },
       {
         name: "reactjs",
+        isStarred: false,
         id: 4
       },
       {
         name: "videos",
+        isStarred: false,
         id: 5
       }
     ],
@@ -127,6 +133,29 @@ class App extends Component {
     return null;
   };
 
+  toggleStar = () => {
+    let oldSubs = this.readCookie('subs');
+    if (oldSubs[0] === null) {
+      return 
+    } else {
+      let newSubs = oldSubs.map(sub => {
+        return (sub.name === this.state.activeSub ? {...sub, isStarred: !sub.isStarred} : {...sub});
+      });
+      this.setState(prevState => {
+        return {
+          subReddits: newSubs,
+        }
+      });
+      this.setCookie('subs', newSubs);
+    }      
+  }
+
+  activeSubStarredStatus = (activeSub) => {
+    const oldSubs = this.readCookie('subs');
+    const isActiveSubStarred =  oldSubs.find(sub =>  sub.name === activeSub ).isStarred;
+    return isActiveSubStarred;
+  }
+
   componentWillMount() {
     let subs = this.readCookie('subs');
     let darkMode = this.readCookie('darkMode');
@@ -154,11 +183,13 @@ class App extends Component {
         <MainBody
             activeSub={this.state.activeSub}
             activeSubURL={this.state.activeSubURL}
+            getIsActiveSubStarred={this.activeSubStarredStatus}
             getSubCount={this.getSubCount}
             sortType={this.state.sortType}
             getSortType={this.getSortType}
             getDarkMode={this.getDarkMode}
             openSideBar={this.openSideBar}
+            toggleStar={this.toggleStar}
         />
       </div>
     );

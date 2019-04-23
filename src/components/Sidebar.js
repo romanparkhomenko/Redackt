@@ -45,6 +45,17 @@ export default class Sidebar extends Component {
 		});
 	};
 
+	displayStarredSubs = (sub) => {
+		if (sub.isStarred) {
+			return (
+				<li className={sub.name === this.props.activeSub ? 'active' : ''}
+				    onClick={() => this.props.changeActiveSub(sub.name)}>
+				  <span># {sub.name}</span>
+				</li>
+			);
+		}
+	}
+
 	render() {
 		return (
 			<React.Fragment>
@@ -88,25 +99,38 @@ export default class Sidebar extends Component {
 						</label>
 					</div>
 				</div>
-
+                
+				<div className="sidebar-channels" onClick={this.focusSubredditInput}>
+					<span>Starred</span>
+				</div>
+				<ul>
+				    {this.props.subReddits.map((subReddit) =>
+					  this.displayStarredSubs(subReddit)
+					)}
+				</ul>
 				<div className="sidebar-channels" onClick={this.focusSubredditInput}>
 					<span>Channels</span>
 					<img src={add} alt="add-icon"/>
 				</div>
 				<ul>
 					{/* Subreddit List */}
-					{this.props.subReddits.map( (subReddit, index) =>
-						<li
-							className={subReddit.name === this.props.activeSub ? 'active' : ''}
-							onClick={() => this.props.changeActiveSub(subReddit.name)}
-							key={subReddit.id.toString()} >
-							<span># {subReddit.name}</span>
-							<span className={"remove-button"}>
-							<button onClick={() => this.props.removeSub(index)}>
-								<img src={remove} alt="Remove Subreddit"/>
-							</button>
-							</span>
-						</li>
+					{this.props.subReddits.map( (subReddit, index) => {
+					    if (subReddit.isStarred === false) {
+						  return(
+							<li
+								className={(subReddit.name === this.props.activeSub) ? 'active' : ''}
+								onClick={() => this.props.changeActiveSub(subReddit.name)}
+								key={subReddit.id.toString()} >
+								<span># {subReddit.name}</span>
+								<span className={"remove-button"}>
+								<button onClick={() => this.props.removeSub(index)}>
+									<img src={remove} alt="Remove Subreddit"/>
+								</button>
+								</span>
+							</li>
+						  );
+						}
+				      }
 					)}
 				</ul>
 

@@ -8,6 +8,7 @@ import atIcon from "../images/at-icon.svg";
 import settingsIcon from "../images/settings-icon.svg";
 import lookupIcon from "../images/lookup-icon.svg";
 import headshot from "../images/slack-logo-icon.png";
+import yellowStarIcon from "../images/star-filled-icon.png";
 import Modal from "./Modal.js";
 import Dropdown from "./Dropdown.js";
 
@@ -84,6 +85,10 @@ export default class Header extends Component {
         this.props.getSortType(temp[id].title);
     };
 
+    setStarIcon = (activeSub) => {
+        return this.props.isActiveSubStarred(activeSub) ? yellowStarIcon : star;
+    }
+
     render() {
         const title = "#" + this.props.activeSub;
         const titleID = 'main-title';
@@ -98,7 +103,7 @@ export default class Header extends Component {
                         <h1 id={titleID}>{title}</h1>
                     </div>
                     <div className="subhead">
-                        <img src={star} alt="star-icon"/>
+                        <img src= {this.setStarIcon(this.props.activeSub)} alt="star-icon" onClick={() => this.props.toggleStar()}/>
                         <span className="numberOfSubs">
                             <img src={person} alt="person-icon"/>
                             <p className={"subtitle"}>{this.props.subCount}</p>
