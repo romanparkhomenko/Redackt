@@ -1,0 +1,1 @@
+export default (name, sortType) => `https://www.reddit.com/r/${name}/${sortType}.json?limit=10&raw_json=1`;

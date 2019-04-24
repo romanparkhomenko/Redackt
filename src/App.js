@@ -4,55 +4,39 @@ import Sidebar from './components/Sidebar.js';
 import MainBody from './components/MainBody.js';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleUp, faAngleDown, faCheck } from '@fortawesome/free-solid-svg-icons'
-library.add(faAngleUp,faAngleDown,faCheck);
+import defaultSubreddits from './constants/subreddits.defaults';
+import generateRedditUrl from './helpers/generateRedditUrl';;
+library.add(faAngleUp, faAngleDown, faCheck);
 
 class App extends Component {
-  state = {
-    subReddits: [
-      {
-        name: "AskReddit",
-        isStarred: false,
-        id: 0
-      },
-      {
-        name: "all",
-        isStarred: false,
-        id: 1
-      },
-      {
-        name: "RocketLeague",
-        isStarred: false,
-        id: 2
-      },
-      {
-        name: "pics",
-        isStarred: false,
-        id: 3
-      },
-      {
-        name: "reactjs",
-        isStarred: false,
-        id: 4
-      },
-      {
-        name: "videos",
-        isStarred: false,
-        id: 5
+  constructor(props) {
+    super(props);
+    const subReddits = this.readCookie('subs');
+
+    this.state = {
+      subReddits,
+      sortType: "top",
+      activeSub: subReddits[0].name,
+      activeSubURL: generateRedditUrl(subReddits[0].name, "top"),
+      darkMode: false,
+      openSidebar: true
+      };
+    }
+
+    componentWillMount() {
+      let darkMode = this.readCookie('darkMode');
+      if (!darkMode) {
+        this.setCookie('darkMode', false);
       }
-    ],
-    sortType: "top",
-    activeSub : "AskReddit",
-    activeSubURL: "https://www.reddit.com/r/askreddit/top.json?limit=10&raw_json=1",
-    darkMode: false,
-    openSidebar: true
-  };
+    }
+
 
   //Function to handle sub change from Sidebar.
   changeActiveSub = (name) => {
     this.setState(prevState => {
       return {
         activeSub: name,
-        activeSubURL: "https://www.reddit.com/r/" + name + "/"+this.state.sortType+".json?limit=10&raw_json=1"
+        activeSubURL: generateRedditUrl(name, this.state.sortType)
       }
     });
     this.openSideBar();
@@ -60,36 +44,48 @@ class App extends Component {
 
   addSub = (name) => {
     let oldSubs = this.readCookie('subs');
-    let newSubs = [...oldSubs, {"name": name, "id": oldSubs.length}];
+    let newSubs = [...oldSubs, { "name": name, "id": oldSubs.length }];
     this.setState(prevState => {
       return {
         subReddits: newSubs,
         activeSub: name,
-        activeSubURL: "https://www.reddit.com/r/" + name + "/"+this.state.sortType+".json?limit=10&raw_json=1"
+        activeSubURL: generateRedditUrl(name, this.state.sortType)
       }
+    }, () => {
+      this.setCookie('subs', newSubs);
+      this.forceUpdate();
     });
-    this.setCookie('subs', newSubs);
   };
 
   removeSub = (subID) => {
     let oldSubs = this.readCookie('subs');
     let updatedPosts = [...oldSubs];
-    updatedPosts.splice(subID, 1);
+    const subToRemove = oldSubs.findIndex((sub) => sub.id === subID);
+    updatedPosts.splice(subToRemove, 1);
+    const activeSub = updatedPosts.find((sub) => sub.name === this.activeSub) || updatedPosts[0];
+
     this.setState(prevState => {
-      return {
-        subReddits: updatedPosts
+        return {
+          subReddits: updatedPosts,
+          activeSub: activeSub.name,
+          activeSubURL: generateRedditUrl(activeSub.name, this.state.sortType)
+        }
+      },
+      () => {
+        this.setCookie('subs', updatedPosts);
+        this.forceUpdate();
       }
-    });
-    this.setCookie('subs', updatedPosts);
+    );
+
   };
 
   getSortType = (sortType) => {
     this.setState(prevState => {
       return {
         sortType: sortType,
-        activeSubURL: "https://www.reddit.com/r/" + this.state.activeSub + "/"+this.state.sortType+".json?limit=10&raw_json=1"
-      }
-    })
+        activeSubURL: generateRedditUrl(this.state.activeSub, this.state.sortType)
+      };
+    });
   };
 
   getDarkMode = () => {
@@ -130,7 +126,7 @@ class App extends Component {
         );
       }
     }
-    return null;
+        return defaultSubreddits;
   };
 
   toggleStar = () => {
@@ -150,22 +146,14 @@ class App extends Component {
     }      
   }
 
-  activeSubStarredStatus = (activeSub) => {
+    activeSubStarredStatus = (activeSubName) => {
     const oldSubs = this.readCookie('subs');
-    const isActiveSubStarred =  oldSubs.find(sub =>  sub.name === activeSub ).isStarred;
+        const activeSub = oldSubs.find(sub => sub.name === activeSubName);
+        const isActiveSubStarred = activeSub ? activeSub.isStarred : false;
     return isActiveSubStarred;
   }
 
-  componentWillMount() {
-    let subs = this.readCookie('subs');
-    let darkMode = this.readCookie('darkMode');
-    if (!subs) {
-      this.setCookie('subs', this.state.subReddits);
-    }
-    if (!darkMode) {
-      this.setCookie('darkMode', false);
-    }
-  }
+
 
   render() {
     return (
